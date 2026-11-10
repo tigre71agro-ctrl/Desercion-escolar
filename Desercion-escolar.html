@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="JUAN CARLOS SANTOS PRADO">
+<meta name="author" content="ANA MARIA DEL PILAR ANACLETO PINEDO">
+<meta name="author" content="LUCY EMILIA TORRES CARRERA">
+
+<title>desercion-escolar</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Desercion-escolar_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Desercion-escolar_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Desercion-escolar_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Desercion-escolar_files/libs/quarto-html/popper.min.js"></script>
+<script src="Desercion-escolar_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Desercion-escolar_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Desercion-escolar_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Desercion-escolar_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Desercion-escolar_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Desercion-escolar_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Desercion-escolar_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Análisis de la deserción y el éxito académico universitario</h1>
+<p class="subtitle lead">Producto de la Unidad I - Ciencia de Datos e IA Aplicada</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<hr>
+<section id="quarto" class="level2">
+<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
+<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Lectura y estructura de datos</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"data/raw/data.csv"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">";"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dec =</span> <span class="st">"."</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4424   37</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   4424 obs. of  37 variables:
+ $ Marital status                                : int  1 1 1 1 2 2 1 1 1 1 ...
+ $ Application mode                              : int  17 15 1 17 39 39 1 18 1 1 ...
+ $ Application order                             : int  5 1 5 2 1 1 1 4 3 1 ...
+ $ Course                                        : int  171 9254 9070 9773 8014 9991 9500 9254 9238 9238 ...
+ $ Daytime/evening attendance                     : int  1 1 1 1 0 0 1 1 1 1 ...
+ $ Previous qualification                        : int  1 1 1 1 1 19 1 1 1 1 ...
+ $ Previous qualification (grade)                : num  122 160 122 122 100 ...
+ $ Nacionality                                   : int  1 1 1 1 1 1 1 1 62 1 ...
+ $ Mother's qualification                        : int  19 1 37 38 37 37 19 37 1 1 ...
+ $ Father's qualification                        : int  12 3 37 37 38 37 38 37 1 19 ...
+ $ Mother's occupation                           : int  5 3 9 5 9 9 7 9 9 4 ...
+ $ Father's occupation                           : int  9 3 9 3 9 7 10 9 9 7 ...
+ $ Admission grade                               : num  127 142 125 120 142 ...
+ $ Displaced                                     : int  1 1 1 1 0 0 1 1 0 1 ...
+ $ Educational special needs                     : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Debtor                                        : int  0 0 0 0 0 1 0 0 0 1 ...
+ $ Tuition fees up to date                       : int  1 0 0 1 1 1 1 0 1 0 ...
+ $ Gender                                        : int  1 1 1 0 0 1 0 1 0 0 ...
+ $ Scholarship holder                            : int  0 0 0 0 0 0 1 0 1 0 ...
+ $ Age at enrollment                             : int  20 19 19 20 45 50 18 22 21 18 ...
+ $ International                                 : int  0 0 0 0 0 0 0 0 1 0 ...
+ $ Curricular units 1st sem (credited)           : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Curricular units 1st sem (enrolled)           : int  0 6 6 6 6 5 7 5 6 6 ...
+ $ Curricular units 1st sem (evaluations)        : int  0 6 0 8 9 10 9 5 8 9 ...
+ $ Curricular units 1st sem (approved)           : int  0 6 0 6 5 5 7 0 6 5 ...
+ $ Curricular units 1st sem (grade)              : num  0 14 0 13.4 12.3 ...
+ $ Curricular units 1st sem (without evaluations): int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Curricular units 2nd sem (credited)           : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Curricular units 2nd sem (enrolled)           : int  0 6 6 6 6 5 8 5 6 6 ...
+ $ Curricular units 2nd sem (evaluations)        : int  0 6 0 10 6 17 8 5 7 14 ...
+ $ Curricular units 2nd sem (approved)           : int  0 6 0 5 6 5 8 0 6 2 ...
+ $ Curricular units 2nd sem (grade)              : num  0 13.7 0 12.4 13 ...
+ $ Curricular units 2nd sem (without evaluations): int  0 0 0 0 0 5 0 0 0 0 ...
+ $ Unemployment rate                             : num  10.8 13.9 10.8 9.4 13.9 16.2 15.5 15.5 16.2 8.9 ...
+ $ Inflation rate                                : num  1.4 -0.3 1.4 -0.8 -0.3 0.3 2.8 2.8 0.3 1.4 ...
+ $ GDP                                           : num  1.74 0.79 1.74 -3.12 0.79 -0.92 -4.06 -4.06 -0.92 3.51 ...
+ $ Target                                        : chr  "Dropout" "Graduate" "Dropout" "Graduate" ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos[, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Marital status Application mode Application order Course
+1              1               17                 5    171
+2              1               15                 1   9254
+3              1                1                 5   9070
+4              1               17                 2   9773
+5              2               39                 1   8014
+6              2               39                 1   9991
+  Daytime/evening attendance\t Previous qualification
+1                            1                      1
+2                            1                      1
+3                            1                      1
+4                            1                      1
+5                            0                      1
+6                            0                     19</code></pre>
+</div>
+</div>
+<p>##El conjunto de datos está conformado por 4 424 observaciones y 37 variables, de las cuales 36 corresponden a características académicas, demográficas, socioeconómicas e institucionales de los estudiantes. La variable respuesta, denominada Target, representa su situación académica. La revisión inicial permitió identificar variables numéricas y categóricas codificadas mediante valores enteros, por lo que será necesario considerar su naturaleza durante las etapas posteriores de preparación y análisis.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Auditoria de datos</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores faltantes</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(datos))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Registros duplicados</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(datos))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Faltantes por variable</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(datos))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                Marital status 
+                                             0 
+                              Application mode 
+                                             0 
+                             Application order 
+                                             0 
+                                        Course 
+                                             0 
+                  Daytime/evening attendance\t 
+                                             0 
+                        Previous qualification 
+                                             0 
+                Previous qualification (grade) 
+                                             0 
+                                   Nacionality 
+                                             0 
+                        Mother's qualification 
+                                             0 
+                        Father's qualification 
+                                             0 
+                           Mother's occupation 
+                                             0 
+                           Father's occupation 
+                                             0 
+                               Admission grade 
+                                             0 
+                                     Displaced 
+                                             0 
+                     Educational special needs 
+                                             0 
+                                        Debtor 
+                                             0 
+                       Tuition fees up to date 
+                                             0 
+                                        Gender 
+                                             0 
+                            Scholarship holder 
+                                             0 
+                             Age at enrollment 
+                                             0 
+                                 International 
+                                             0 
+           Curricular units 1st sem (credited) 
+                                             0 
+           Curricular units 1st sem (enrolled) 
+                                             0 
+        Curricular units 1st sem (evaluations) 
+                                             0 
+           Curricular units 1st sem (approved) 
+                                             0 
+              Curricular units 1st sem (grade) 
+                                             0 
+Curricular units 1st sem (without evaluations) 
+                                             0 
+           Curricular units 2nd sem (credited) 
+                                             0 
+           Curricular units 2nd sem (enrolled) 
+                                             0 
+        Curricular units 2nd sem (evaluations) 
+                                             0 
+           Curricular units 2nd sem (approved) 
+                                             0 
+              Curricular units 2nd sem (grade) 
+                                             0 
+Curricular units 2nd sem (without evaluations) 
+                                             0 
+                             Unemployment rate 
+                                             0 
+                                Inflation rate 
+                                             0 
+                                           GDP 
+                                             0 
+                                        Target 
+                                             0 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frecuencia de la variable respuesta</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>Target)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Dropout Enrolled Graduate 
+    1421      794     2209 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Porcentaje por categoria</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(datos<span class="sc">$</span>Target)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Dropout Enrolled Graduate 
+   32.12    17.95    49.93 </code></pre>
+</div>
+</div>
+<p>##La auditoría inicial del conjunto de datos permitió verificar 4 424 observaciones y 37 variables. No se identificaron valores faltantes ni registros exactamente duplicados, lo que evidencia una adecuada completitud de la información. Respecto a la situación académica, el 49,93 % de los estudiantes corresponde a graduados, el 32,12 % a estudiantes que abandonaron sus estudios y el 17,95 % a estudiantes matriculados.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Validacion y consistencia</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Edad de ingreso</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos[[<span class="st">"Age at enrollment"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  17.00   19.00   20.00   23.27   25.00   70.00 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calificacion de admision</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos[[<span class="st">"Admission grade"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   95.0   117.9   126.1   127.0   134.8   190.0 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calificaciones por semestre</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos[[<span class="st">"Curricular units 1st sem (grade)"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00   11.00   12.29   10.64   13.40   18.88 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos[[<span class="st">"Curricular units 2nd sem (grade)"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00   10.75   12.20   10.23   13.33   18.57 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar edades no validas</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(datos[[<span class="st">"Age at enrollment"</span>]] <span class="sc">&lt;=</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Revisar asignaturas aprobadas y matriculadas</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(datos[[<span class="st">"Curricular units 1st sem (approved)"</span>]] <span class="sc">&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    datos[[<span class="st">"Curricular units 1st sem (enrolled)"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(datos[[<span class="st">"Curricular units 2nd sem (approved)"</span>]] <span class="sc">&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    datos[[<span class="st">"Curricular units 2nd sem (enrolled)"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>##La evaluación de consistencia permitió identificar una edad promedio de ingreso de 23,27 años, con valores comprendidos entre 17 y 70 años. La calificación promedio de admisión fue de 127 puntos, mientras que las calificaciones promedio del primer y segundo semestre fueron de 10,64 y 10,23 puntos, respectivamente. No se identificaron edades no positivas ni registros donde las asignaturas aprobadas superaran a las matriculadas. Sin embargo, la presencia de calificaciones iguales a cero y edades relativamente elevadas requiere una revisión adicional antes de establecer decisiones de limpieza.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Revision de valores extremos y ceros</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Estudiantes mayores de 40 años</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(datos[[<span class="st">"Age at enrollment"</span>]] <span class="sc">&gt;</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 225</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Primer semestre</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(datos[[<span class="st">"Curricular units 1st sem (enrolled)"</span>]] <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 180</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(datos[[<span class="st">"Curricular units 1st sem (grade)"</span>]] <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 718</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Segundo semestre</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(datos[[<span class="st">"Curricular units 2nd sem (enrolled)"</span>]] <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 180</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(datos[[<span class="st">"Curricular units 2nd sem (grade)"</span>]] <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 870</code></pre>
+</div>
+</div>
+<p>##La revisión adicional identificó 225 estudiantes mayores de 40 años y 180 registros sin asignaturas matriculadas en cada semestre. Asimismo, se encontraron 718 calificaciones iguales a cero en el primer semestre y 870 en el segundo. Estos valores requieren una evaluación diferenciada, debido a que pueden corresponder a situaciones académicas legítimas y no necesariamente a errores de registro. Por tanto, se decidió conservar provisionalmente las observaciones originales hasta verificar su consistencia y significado.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Relacion entre matricula y calificaciones</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Primer semestre</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">matricula_cero =</span> datos[[<span class="st">"Curricular units 1st sem (enrolled)"</span>]] <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nota_cero =</span> datos[[<span class="st">"Curricular units 1st sem (grade)"</span>]] <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              nota_cero
+matricula_cero FALSE TRUE
+         FALSE  3706  538
+         TRUE      0  180</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Segundo semestre</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">matricula_cero =</span> datos[[<span class="st">"Curricular units 2nd sem (enrolled)"</span>]] <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">nota_cero =</span> datos[[<span class="st">"Curricular units 2nd sem (grade)"</span>]] <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              nota_cero
+matricula_cero FALSE TRUE
+         FALSE  3554  690
+         TRUE      0  180</code></pre>
+</div>
+</div>
+<p>##La evaluación de las calificaciones iguales a cero permitió distinguir dos situaciones académicas. En el primer semestre se identificaron 180 estudiantes sin asignaturas matriculadas y 538 estudiantes con matrícula, pero con calificación cero. En el segundo semestre se observaron 180 y 690 casos, respectivamente. No se encontraron estudiantes sin asignaturas matriculadas que presentaran calificaciones superiores a cero. Estos resultados evidencian consistencia en los registros sin matrícula; sin embargo, las calificaciones cero de estudiantes matriculados requieren cautela interpretativa. Por ello, se decidió conservar los valores originales y evitar imputaciones o eliminaciones sin sustento adicional.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Preparacion de los datos</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>datos_curados <span class="ot">&lt;-</span> datos</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa de aprobacion del primer semestre</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>datos_curados<span class="sc">$</span>tasa_aprobacion_1 <span class="ot">&lt;-</span> <span class="fu">with</span>(datos,</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(<span class="st">`</span><span class="at">Curricular units 1st sem (enrolled)</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Curricular units 1st sem (approved)</span><span class="st">`</span> <span class="sc">/</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Curricular units 1st sem (enrolled)</span><span class="st">`</span>,</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>         <span class="cn">NA_real_</span>)</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa de aprobacion del segundo semestre</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>datos_curados<span class="sc">$</span>tasa_aprobacion_2 <span class="ot">&lt;-</span> <span class="fu">with</span>(datos,</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(<span class="st">`</span><span class="at">Curricular units 2nd sem (enrolled)</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Curricular units 2nd sem (approved)</span><span class="st">`</span> <span class="sc">/</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Curricular units 2nd sem (enrolled)</span><span class="st">`</span>,</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>         <span class="cn">NA_real_</span>)</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar resultados</span></span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos_curados)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4424   39</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos_curados<span class="sc">$</span>tasa_aprobacion_1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.     NAs 
+ 0.0000  0.6000  0.8571  0.7275  1.0000  1.0000     180 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos_curados<span class="sc">$</span>tasa_aprobacion_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.     NAs 
+ 0.0000  0.5000  0.8333  0.6884  1.0000  1.0000     180 </code></pre>
+</div>
+</div>
+<p>##Las variables permitió construir dos indicadores de rendimiento académico a partir de la relación entre las asignaturas aprobadas y matriculadas en cada semestre. La tasa media de aprobación fue de 72,75 % en el primer semestre y 68,84 % en el segundo. Asimismo, se identificaron 180 registros por semestre en los que no fue posible calcular la tasa debido a la ausencia de asignaturas matriculadas. Estos casos fueron representados mediante valores NA, sin modificar los registros originales. El conjunto procesado conserva las 4 424 observaciones e incorpora dos nuevas variables, alcanzando un total de 39.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Validacion y almacenamiento</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar tasas de aprobacion</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(datos_curados<span class="sc">$</span>tasa_aprobacion_1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(datos_curados<span class="sc">$</span>tasa_aprobacion_2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar limites y dimensiones</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(datos_curados) <span class="sc">==</span> <span class="dv">4424</span>,</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ncol</span>(datos_curados) <span class="sc">==</span> <span class="dv">39</span>,</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">all</span>(datos_curados<span class="sc">$</span>tasa_aprobacion_1 <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>      datos_curados<span class="sc">$</span>tasa_aprobacion_1 <span class="sc">&lt;=</span> <span class="dv">1</span>,</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">all</span>(datos_curados<span class="sc">$</span>tasa_aprobacion_2 <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>      datos_curados<span class="sc">$</span>tasa_aprobacion_2 <span class="sc">&lt;=</span> <span class="dv">1</span>,</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar datos procesados</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/processed"</span>,</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">recursive =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(datos_curados,</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"data/processed/estudiantes_curados.rds"</span>)</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar archivo</span></span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(<span class="st">"data/processed/estudiantes_curados.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Analisis exploratorio</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Tasa de aprobacion media por situacion academica</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">tapply</span>(</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  datos_curados<span class="sc">$</span>tasa_aprobacion_1,</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  datos_curados<span class="sc">$</span>Target,</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  mean,</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(medias <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Dropout Enrolled Graduate 
+   40.60    71.35    93.50 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mediana por situacion academica</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>medianas <span class="ot">&lt;-</span> <span class="fu">tapply</span>(</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  datos_curados<span class="sc">$</span>tasa_aprobacion_1,</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  datos_curados<span class="sc">$</span>Target,</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  median,</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(medianas <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Dropout Enrolled Graduate 
+      40       80      100 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Casos sin tasa calculable por categoria</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_curados<span class="sc">$</span>Target,</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(datos_curados<span class="sc">$</span>tasa_aprobacion_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+           FALSE TRUE
+  Dropout   1344   77
+  Enrolled   766   28
+  Graduate  2134   75</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafico comparativo</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(tasa_aprobacion_1 <span class="sc">~</span> Target,</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> datos_curados,</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Aprobacion del primer semestre"</span>,</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Situacion academica"</span>,</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Tasa de aprobacion"</span>,</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Desercion-escolar_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>##El análisis exploratorio evidenció diferencias en las tasas de aprobación del primer semestre según la situación académica de los estudiantes. Los graduados presentaron una tasa media de aprobación del 93,50 %, seguida de los estudiantes matriculados (71,35 %) y aquellos que abandonaron sus estudios (40,60 %). El diagrama de cajas mostró una mayor dispersión en el grupo de abandono, mientras que los graduados concentraron sus observaciones en tasas elevadas de aprobación. Estos resultados ofrecen evidencia descriptiva favorable a la primera hipótesis, sugiriendo una asociación entre el rendimiento académico temprano y la trayectoria educativa. No obstante, esta relación deberá evaluarse mediante procedimientos estadísticos y modelos predictivos posteriores.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 9. Edad de ingreso y situacion academica</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Edad promedio por grupo</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">tapply</span>(datos_curados[[<span class="st">"Age at enrollment"</span>]],</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>             datos_curados<span class="sc">$</span>Target, mean), <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Dropout Enrolled Graduate 
+   26.07    22.37    21.78 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mediana de edad por grupo</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(datos_curados[[<span class="st">"Age at enrollment"</span>]],</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>       datos_curados<span class="sc">$</span>Target, median)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Dropout Enrolled Graduate 
+      23       20       19 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafico de cajas</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="st">`</span><span class="at">Age at enrollment</span><span class="st">`</span> <span class="sc">~</span> Target,</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> datos_curados,</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Edad de ingreso y situacion academica"</span>,</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Situacion academica"</span>,</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Edad de ingreso (años)"</span>,</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"lightgray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Desercion-escolar_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>##El análisis exploratorio de la edad de ingreso evidenció diferencias entre las categorías de situación académica. Los estudiantes que abandonaron sus estudios presentaron una edad media de 26,07 años, superior a la registrada entre los estudiantes matriculados (22,37 años) y graduados (21,78 años). Asimismo, el diagrama de cajas mostró una mayor dispersión en el grupo de abandono y la presencia de edades elevadas en las tres categorías. Estos hallazgos sugieren una asociación entre la edad de ingreso y la trayectoria académica; sin embargo, no permiten establecer una relación causal ni confirmar diferencias estadísticamente significativas.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10. Condicion de becario y situacion academica</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de frecuencias</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>tabla_beca <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Beca =</span> datos_curados[[<span class="st">"Scholarship holder"</span>]],</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Situacion =</span> datos_curados<span class="sc">$</span>Target</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>tabla_beca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Situacion
+Beca Dropout Enrolled Graduate
+   0    1287      664     1374
+   1     134      130      835</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Porcentajes por condicion de becario</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>porcentaje_beca <span class="ot">&lt;-</span> <span class="fu">round</span>(</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(tabla_beca, <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>porcentaje_beca</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Situacion
+Beca Dropout Enrolled Graduate
+   0   38.71    19.97    41.32
+   1   12.19    11.83    75.98</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafico comparativo</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>(porcentaje_beca),</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Situacion academica segun condicion de becario"</span>,</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Condicion de becario (0 = No, 1 = Si)"</span>,</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Porcentaje de estudiantes"</span>,</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"gray35"</span>, <span class="st">"gray65"</span>, <span class="st">"gray90"</span>),</span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.text =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>),</span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>)</span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Desercion-escolar_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>##El análisis exploratorio evidenció diferencias en la situación académica de los estudiantes según su condición de becario. Entre quienes recibieron una beca, el 75,98 % alcanzó la graduación y el 12,19 % abandonó sus estudios. En contraste, entre los estudiantes sin beca, la proporción de graduados fue del 41,32 %, mientras que el abandono alcanzó el 38,71 %. Estos resultados sugieren una asociación entre la condición de becario y la trayectoria académica. Sin embargo, las diferencias observadas no permiten atribuir un efecto causal a las becas, debido a la posible influencia de factores académicos y socioeconómicos adicionales.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 11. Nota de admision y situacion academica</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Promedio por grupo</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">tapply</span>(datos_curados[[<span class="st">"Admission grade"</span>]],</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>             datos_curados<span class="sc">$</span>Target, mean), <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Dropout Enrolled Graduate 
+  124.96   125.53   128.79 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mediana por grupo</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(datos_curados[[<span class="st">"Admission grade"</span>]],</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>       datos_curados<span class="sc">$</span>Target, median)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Dropout Enrolled Graduate 
+   123.6    124.1    127.4 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafico de cajas</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="st">`</span><span class="at">Admission grade</span><span class="st">`</span> <span class="sc">~</span> Target,</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> datos_curados,</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Nota de admision y situacion academica"</span>,</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Situacion academica"</span>,</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Nota de admision (puntos)"</span>,</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"lightgray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Desercion-escolar_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>##El análisis exploratorio de las calificaciones de admisión evidenció diferencias moderadas entre las categorías de situación académica. Los estudiantes graduados presentaron una calificación media de 128,79 puntos, superior a la registrada entre los estudiantes matriculados (125,53 puntos) y aquellos que abandonaron sus estudios (124,96 puntos). No obstante, el diagrama de cajas mostró un considerable solapamiento entre las distribuciones de los tres grupos. Estos resultados sugieren que la calificación de admisión podría estar asociada con la trayectoria académica, aunque su capacidad de diferenciación individual parece limitada. Las diferencias observadas son descriptivas y deberán evaluarse posteriormente mediante procedimientos estadísticos apropiados.</p>
+</section>
+<section id="registro-de-decisiones-de-preparación" class="level2">
+<h2 class="anchored" data-anchor-id="registro-de-decisiones-de-preparación">9. Registro de decisiones de preparación</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decisión</th>
+<th>Justificación</th>
+<th>Alternativa descartada</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Conservar registros</td>
+<td>No se encontraron valores faltantes ni duplicados exactos</td>
+<td>Eliminar registros sin evidencia de error</td>
+<td>Se mantienen 4424 observaciones</td>
+</tr>
+<tr class="even">
+<td>Conservar edades elevadas</td>
+<td>Pueden corresponder a estudiantes adultos</td>
+<td>Eliminar edades mayores de 40 años</td>
+<td>Se conservan 225 casos</td>
+</tr>
+<tr class="odd">
+<td>Mantener notas iguales a cero</td>
+<td>No se ha demostrado que representen errores</td>
+<td>Sustituir ceros por valores imputados</td>
+<td>Se mantienen las notas originales</td>
+</tr>
+<tr class="even">
+<td>Crear tasas de aprobación</td>
+<td>Permiten comparar el rendimiento académico</td>
+<td>Utilizar únicamente asignaturas aprobadas</td>
+<td>Se agregan dos variables</td>
+</tr>
+<tr class="odd">
+<td>Asignar NA sin matrícula</td>
+<td>Evita dividir entre cero</td>
+<td>Asignar una tasa de 0 %</td>
+<td>Se generan 180 NA por semestre</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10. Diccionario de datos</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>diccionario <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"documentacion/diccionario_datos.csv"</span>,</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fileEncoding =</span> <span class="st">"UTF-8-BOM"</span>,</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar el diccionario</span></span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(diccionario)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 39  7</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar que todas las variables estén documentadas</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(diccionario<span class="sc">$</span>variable, <span class="fu">names</span>(datos_curados))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar las primeras variables</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diccionario[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      variable    descripcion    tipo
+1               Marital status Por documentar integer
+2             Application mode Por documentar integer
+3            Application order Por documentar integer
+4                       Course Por documentar integer
+5 Daytime/evening attendance\t Por documentar integer
+6       Previous qualification Por documentar integer</code></pre>
+</div>
+</div>
+</section>
+<section id="fuentes-de-datos-trazabilidad-y-consideraciones-éticas" class="level2">
+<h2 class="anchored" data-anchor-id="fuentes-de-datos-trazabilidad-y-consideraciones-éticas">11. Fuentes de datos, trazabilidad y consideraciones éticas</h2>
+<section id="fuente-de-información" class="level3">
+<h3 class="anchored" data-anchor-id="fuente-de-información">11.1. Fuente de información</h3>
+<p>Se utilizó el conjunto de datos <em>Predict Students’ Dropout and Academic Success</em>, disponible en UCI Machine Learning Repository (Realinho et al., 2021). El conjunto contiene información de 4424 estudiantes de educación superior, relacionada con características demográficas, socioeconómicas, antecedentes educativos y rendimiento académico.</p>
+<p>Los datos proceden de una institución de educación superior de Portugal y permiten estudiar tres situaciones académicas: abandono, matrícula y graduación.</p>
+<p>Fuente: https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success</p>
+<p>DOI: https://doi.org/10.24432/C5MC89</p>
+</section>
+<section id="trazabilidad-y-preparación" class="level3">
+<h3 class="anchored" data-anchor-id="trazabilidad-y-preparación">11.2. Trazabilidad y preparación</h3>
+<p>El archivo original se conservó en la carpeta <code>data/raw</code>, sin modificaciones. La preparación se realizó mediante RStudio, verificando la estructura, los valores faltantes, los registros duplicados y la consistencia de las variables académicas.</p>
+<p>Posteriormente se construyeron dos indicadores de aprobación semestral. El conjunto procesado conservó 4424 observaciones y alcanzó 39 variables. Esta versión fue almacenada en <code>data/processed/estudiantes_curados.rds</code>.</p>
+<p>Las decisiones aplicadas se encuentran documentadas en el registro de decisiones y las variables se describen en el diccionario de datos.</p>
+</section>
+<section id="consideraciones-éticas" class="level3">
+<h3 class="anchored" data-anchor-id="consideraciones-éticas">11.3. Consideraciones éticas</h3>
+<p>El archivo no presenta identificadores personales directos evidentes, como nombres o números de documento. No obstante, contiene información demográfica y socioeconómica que requiere un tratamiento responsable.</p>
+<p>El conjunto se distribuye bajo licencia Creative Commons Attribution 4.0 (CC BY 4.0), que permite su reutilización con atribución.</p>
+<p>La documentación consultada no permite verificar individualmente las condiciones de consentimiento de los estudiantes. Por ello, el análisis se limita a la información publicada y a resultados agregados.</p>
+<p>Los hallazgos se interpretarán como asociaciones estadísticas, sin establecer relaciones causales ni atribuir características individuales a los estudiantes.</p>
+</section>
+</section>
+<section id="hallazgos-y-decisiones-para-la-unidad-ii" class="level2">
+<h2 class="anchored" data-anchor-id="hallazgos-y-decisiones-para-la-unidad-ii">12. Hallazgos y decisiones para la Unidad II</h2>
+<section id="principales-hallazgos" class="level3">
+<h3 class="anchored" data-anchor-id="principales-hallazgos">12.1. Principales hallazgos</h3>
+<p>El análisis exploratorio permitió identificar diferencias en las características académicas y socioeconómicas de los estudiantes según su situación académica.</p>
+<p>La tasa de aprobación del primer semestre presentó las diferencias más marcadas. Los estudiantes graduados alcanzaron una aprobación media de 93,50 %, mientras que los estudiantes que abandonaron sus estudios registraron 40,60 %.</p>
+<p>Respecto a la edad de ingreso, los estudiantes que abandonaron sus estudios presentaron una media de 26,07 años, frente a 21,78 años entre los graduados.</p>
+<p>Asimismo, el 75,98 % de los estudiantes becados alcanzó la graduación, en comparación con el 41,32 % de quienes no recibieron beca.</p>
+<p>Finalmente, las calificaciones de admisión fueron ligeramente superiores entre los graduados (128,79 puntos) respecto a los estudiantes que abandonaron sus estudios (124,96 puntos).</p>
+<p>Estos hallazgos constituyen evidencia descriptiva de asociaciones entre las variables analizadas y la situación académica, pero no permiten establecer relaciones causales ni confirmar significación estadística.</p>
+</section>
+<section id="variables-para-el-modelado" class="level3">
+<h3 class="anchored" data-anchor-id="variables-para-el-modelado">12.2. Variables para el modelado</h3>
+<p>Para la Unidad II se propone utilizar <code>Target</code> como variable respuesta, considerando sus tres categorías: Dropout, Enrolled y Graduate.</p>
+<p>Entre las variables predictoras candidatas se encuentran:</p>
+<ul>
+<li>Edad de ingreso.</li>
+<li>Calificación de admisión.</li>
+<li>Condición de becario.</li>
+<li>Características socioeconómicas.</li>
+<li>Antecedentes educativos.</li>
+<li>Rendimiento académico del primer semestre.</li>
+</ul>
+<p>Se considerarán dos escenarios de predicción: uno basado en información disponible al ingreso y otro que incorpore el rendimiento del primer semestre. Las variables del segundo semestre solo podrán utilizarse en modelos cuyo momento de predicción sea posterior a ese periodo.</p>
+<p>La selección definitiva de variables se realizará durante el modelado, considerando su disponibilidad temporal, pertinencia y posible redundancia.</p>
+</section>
+<section id="riesgos-identificados" class="level3">
+<h3 class="anchored" data-anchor-id="riesgos-identificados">12.3. Riesgos identificados</h3>
+<p>La distribución de la variable respuesta presenta diferencias entre categorías: Graduate representa el 49,93 %, Dropout el 32,12 % y Enrolled el 17,95 %. Esta situación requiere considerar el desbalance de clases durante la evaluación de los modelos.</p>
+<p>También deberá examinarse la posible multicolinealidad entre las variables académicas, particularmente aquellas relacionadas con asignaturas matriculadas, evaluadas y aprobadas.</p>
+<p>Otro aspecto importante es evitar la fuga de información. Las variables utilizadas deberán corresponder al momento en que se pretende realizar la predicción.</p>
+<p>Los 180 valores no calculables de cada tasa de aprobación deberán tratarse de acuerdo con el significado de la ausencia de matrícula, evitando reemplazarlos automáticamente por cero.</p>
+</section>
+<section id="decisiones-para-la-siguiente-unidad" class="level3">
+<h3 class="anchored" data-anchor-id="decisiones-para-la-siguiente-unidad">12.4. Decisiones para la siguiente unidad</h3>
+<p>Los resultados obtenidos durante la preparación y exploración de los datos constituyen una base inicial para el desarrollo de la Unidad II. Se considera pertinente continuar evaluando las variables académicas, demográficas y socioeconómicas que mostraron diferencias descriptivas según la situación de los estudiantes.</p>
+<p>En esta etapa se identificaron aspectos que requieren atención posterior, como la distribución desigual de las categorías de la variable respuesta, la posible relación entre algunas variables explicativas y la disponibilidad temporal de la información utilizada para la predicción.</p>
+<p>La selección de variables y los procedimientos de modelado se definirán en la siguiente unidad, considerando los resultados exploratorios, las características del conjunto de datos y los criterios metodológicos correspondientes.</p>
+</section>
+<section id="conclusión" class="level3">
+<h3 class="anchored" data-anchor-id="conclusión">12.5. Conclusión</h3>
+<p>El proceso desarrollado permitió verificar la estructura y calidad del conjunto de datos, conservar las 4424 observaciones originales e incorporar dos indicadores de aprobación académica.</p>
+<p>El análisis exploratorio identificó asociaciones descriptivas entre la situación académica y variables relacionadas con el rendimiento, la edad de ingreso, la condición de becario y la calificación de admisión.</p>
+<p>Los resultados permiten establecer una base documentada y reproducible para el modelado posterior, reconociendo las limitaciones del análisis exploratorio y la necesidad de prevenir la fuga de información.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
